@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Flex, Box } from '@chakra-ui/react'
+import { Provider } from '@/components/ui/provider'
+
+import Sidebar from '@/components/Sidebar'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -14,7 +17,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={``}>{children}</body>
+      <body>
+        <Provider>
+          <Flex>
+            <Sidebar />
+            <Box
+              ml={{ base: 0, md: 64 }}
+              p="4"
+              flex="1"
+            >
+              {children}
+            </Box>
+          </Flex>
+        </Provider>
+      </body>
     </html>
   )
 }
