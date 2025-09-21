@@ -10,6 +10,7 @@ import {
   Icon,
   Image,
   Collapsible,
+  Button,
 } from '@chakra-ui/react'
 import {
   ArrowDown2,
@@ -98,15 +99,13 @@ export default function TopBar() {
             gap={3}
           >
             {images2nd.map((img, index) => (
-              <Flex
+              <Button
                 key={index}
-                alignItems={'center'}
-                justifyContent={'center'}
-                width={'46px'}
-                height={'46px'}
+                p={1}
                 borderRadius={'10px'}
-                textAlign={'center'}
                 border={'1px solid #EEF1F9'}
+                bg={'inherit'}
+                cursor={'pointer'}
               >
                 <Image
                   src={img.source.src}
@@ -114,7 +113,7 @@ export default function TopBar() {
                   height={img.height}
                   alt={`Image ${index + 1}`}
                 />
-              </Flex>
+              </Button>
             ))}
           </Flex>
         </Box>
@@ -124,6 +123,7 @@ export default function TopBar() {
           borderRadius={'10px'}
           padding={1}
           border={'1px solid #EEF1F9'}
+          ml={4}
         >
           <Flex
             alignItems={'center'}
@@ -137,6 +137,7 @@ export default function TopBar() {
               borderRadius={'10px'}
               alignItems={'center'}
               justifyContent={'center'}
+              cursor={'pointer'}
             >
               <Text color={'white'}>Melding maken</Text>
             </Flex>
@@ -147,6 +148,7 @@ export default function TopBar() {
               borderRadius={'10px'}
               alignItems={'center'}
               justifyContent={'center'}
+              cursor={'pointer'}
             >
               <Text color={'white'}>VIM</Text>
             </Flex>
@@ -167,6 +169,7 @@ export default function TopBar() {
               borderRadius={'10px'}
               alignItems={'center'}
               justifyContent={'center'}
+              cursor={'pointer'}
             >
               <Text color={'white'}>BHV</Text>
             </Flex>
@@ -177,6 +180,7 @@ export default function TopBar() {
               borderRadius={'10px'}
               alignItems={'center'}
               justifyContent={'center'}
+              cursor={'pointer'}
             >
               <Text color={'white'}>Datalek</Text>
             </Flex>
@@ -190,6 +194,7 @@ export default function TopBar() {
           border={'1px solid #EEF1F9'}
           alignItems={'center'}
           justifyContent={'center'}
+          cursor={'pointer'}
         >
           <Icon as={Link1} />
         </Flex>
@@ -206,6 +211,7 @@ export default function TopBar() {
           border={'1px solid #EEF1F9'}
           alignItems={'center'}
           justifyContent={'center'}
+          cursor={'pointer'}
         >
           <Icon as={Notification} />
         </Flex>
@@ -225,11 +231,12 @@ export default function TopBar() {
                 width={'100%'}
                 alignItems={'center'}
                 gap={1}
+                cursor={'pointer'}
               >
                 <Text fontSize={'xs'}>Hi Paul</Text>
                 <Icon
                   as={ArrowDown2}
-                  size="sm"
+                  size={'xs'}
                   fontWeight={'extrabold'}
                 />
               </Flex>

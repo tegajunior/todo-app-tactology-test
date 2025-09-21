@@ -5,8 +5,6 @@ import {
   AddCircle,
   ArrowCircleLeft2,
   Calendar,
-  Export,
-  ExportCircle,
   ExportCurve,
   Sort,
 } from 'iconsax-reactjs'
@@ -30,7 +28,6 @@ export default function Home() {
           alignItems={'center'}
           justifyContent={'space-between'}
           gap={8}
-          border={'1px solid red'}
         >
           <Flex
             border={'1px solid #CDD6E9'}
@@ -38,6 +35,7 @@ export default function Home() {
             p={2}
             justifyContent={'center'}
             alignItems={'center'}
+            cursor={'pointer'}
           >
             <Icon as={ArrowCircleLeft2} />
           </Flex>
@@ -70,9 +68,8 @@ export default function Home() {
               <Switch.Label />
             </Switch.Root>
           </Flex>
-          <Flex
-            alignItems={'center'}
-            justifyContent={'center'}
+          <Button
+            color={'black'}
             width={'46px'}
             height={'46px'}
             borderRadius={'10px'}
@@ -82,10 +79,9 @@ export default function Home() {
               as={Sort}
               size={'md'}
             />
-          </Flex>
-          <Flex
-            alignItems={'center'}
-            justifyContent={'center'}
+          </Button>
+          <Button
+            color={'black'}
             width={'46px'}
             height={'46px'}
             borderRadius={'10px'}
@@ -95,20 +91,24 @@ export default function Home() {
               as={Calendar}
               size={'md'}
             />
-          </Flex>
+          </Button>
           <Button
-            colorPalette="#41245F"
+            bg={'#41245F'}
             variant="solid"
+            rounded={'lg'}
             size={'lg'}
             p={4}
           >
             <Icon as={ExportCurve} /> Export xlsx
           </Button>
           <Button
-            colorPalette="teal"
+            bg={'#75C5C1'}
+            size={'lg'}
+            p={4}
             variant="solid"
+            rounded={'lg'}
           >
-            Call us <Icon as={AddCircle} />
+            <Icon as={AddCircle} /> Add Task
           </Button>
         </Flex>
       </Flex>
