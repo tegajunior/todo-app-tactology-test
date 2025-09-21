@@ -1,9 +1,26 @@
 import type { Metadata } from 'next'
+// import { Plus_Jakarta_Sans } from 'next/font/google'
+
 import { Flex, Box } from '@chakra-ui/react'
+// import { extendTheme } from '@chakra-ui/theme-utils'
 import { Provider } from '@/components/ui/provider'
 
 import Sidebar from '@/components/Sidebar'
 import './globals.css'
+import TopBar from '@/components/TopBar'
+
+// const plusJakarta = Plus_Jakarta_Sans({
+//   subsets: ['latin'],
+//   weight: ['400', '500', '600', '700'],
+//   variable: '--font-plus-jakarta-sans',
+// })
+
+// const theme = extendTheme({
+//   fonts: {
+//     heading: 'var(--font-plus-jakarta-sans), sans-serif',
+//     body: 'var(--font-plus-jakarta-sans), sans-serif',
+//   },
+// })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -19,13 +36,14 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Provider>
-          <Flex>
+          <Flex gap={10}>
             <Sidebar />
             <Box
-              ml={{ base: 0, md: 64 }}
-              p="4"
+              ml={{ base: 0, md: 60 }}
+              p={0}
               flex="1"
             >
+              <TopBar />
               {children}
             </Box>
           </Flex>

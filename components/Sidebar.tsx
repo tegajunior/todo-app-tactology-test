@@ -1,6 +1,14 @@
 'use client'
 import Image from 'next/image'
-import { Box, Text, Icon, Flex, Switch } from '@chakra-ui/react'
+import {
+  Box,
+  Text,
+  Icon,
+  Flex,
+  Switch,
+  Collapsible,
+  Image as ChakraImage,
+} from '@chakra-ui/react'
 import {
   ArrowLeft,
   Category,
@@ -17,36 +25,40 @@ import {
   MessageEdit,
   Edit,
 } from 'iconsax-reactjs'
-import { Image as ChakraImage } from '@chakra-ui/react'
 
 import logo from '@/assets/images/logo.png'
 import englandFlag from '@/assets/images/englandFlag.jpg'
+import { LinkItem } from '@/models/types'
 
-const links = [
-  { label: 'Home', icon: Category },
-  { label: 'MKVanBinnen', icon: Stickynote },
-  { label: 'Document Management', icon: Folder2 },
-  { label: 'Patient Information', icon: People },
-  { label: 'Agenda', icon: Note },
-  { label: 'My Department', icon: Task },
-  { label: 'News', icon: null },
-  { label: 'Members', icon: null },
-  { label: 'Todo', icon: null },
-  { label: 'Form Task', icon: null },
-  { label: 'Agenda', icon: null },
-  { label: 'Follow up system', icon: null },
-  { label: 'Settings', icon: null, iconRight: ArrowDown2 },
+const links: LinkItem[] = [
+  { label: 'Home', icon: Category, href: '/' },
+  { label: 'MKVanBinnen', icon: Stickynote, href: '/mk-van-binnen' },
+  { label: 'Document Management', icon: Folder2, href: '/document-management' },
+  { label: 'Patient Information', icon: People, href: '/patient-information' },
+  { label: 'Agenda', icon: Note, href: '/agenda' },
+  { label: 'My Department', icon: Task, href: '/department' },
+  { label: 'News', icon: undefined, href: '/department/news' },
+  { label: 'Members', icon: undefined, href: '/department/members' },
+  { label: 'Todo', icon: undefined, href: '/department/todo' },
+  { label: 'Form Task', icon: undefined, href: '/department/form-task' },
+  { label: 'Agenda', icon: undefined, href: '/department/agenda' },
+  {
+    label: 'Follow up system',
+    icon: undefined,
+    href: '/department/follow-up-system',
+  },
+  { label: 'Group Settings', icon: undefined, children: [] },
   { label: 'Phone numbers', icon: Call },
   { label: 'My todo Protocols', icon: TaskSquare },
   { label: 'My Notifications', icon: NotificationBing },
   { label: 'Knowledge Base', icon: MenuBoard },
   { label: 'Super Admin', icon: MessageEdit },
-  { label: 'Admin', icon: Edit, iconRight: ArrowDown2 },
-  { label: 'Agenda', icon: null },
-  { label: 'News', icon: null },
-  { label: 'Poll', icon: null },
-  { label: 'Department Rules', icon: null },
-  { label: 'Follow up system', icon: null },
+  { label: 'Admin', icon: Edit, children: [] },
+  { label: 'Agenda', icon: undefined },
+  { label: 'News', icon: undefined },
+  { label: 'Poll', icon: undefined },
+  { label: 'Department Rules', icon: undefined },
+  { label: 'Follow up system', icon: undefined },
 ]
 
 export default function Sidebar() {
@@ -61,6 +73,7 @@ export default function Sidebar() {
       paddingY={6}
       position={{ base: 'relative', md: 'fixed' }}
       overflow={'auto'}
+      borderRight={'none'}
     >
       <Flex
         direction="row"
@@ -96,20 +109,38 @@ export default function Sidebar() {
           ) : (
             <Text width={'20%'}>&nbsp;</Text>
           )}
-          <Flex
-            textAlign={'left'}
-            width={'80%'}
-            alignItems={'center'}
-          >
-            <Text fontSize={'xs'}>{item.label}</Text>
-            {item.iconRight && (
-              <Icon
-                as={item.iconRight}
-                size="sm"
-                marginLeft={item.label === 'Admin' ? 'auto' : 3}
-              />
+          <Box width={'80%'}>
+            {item.children ? (
+              <Collapsible.Root unmountOnExit>
+                <Collapsible.Trigger>
+                  <Flex
+                    width={'100%'}
+                    alignItems={'center'}
+                  >
+                    <Text fontSize={'xs'}>{item.label}</Text>
+                    <Box marginLeft={item.label === 'Admin' ? 20 : 3}>
+                      <Icon
+                        as={ArrowDown2}
+                        size="sm"
+                      />
+                    </Box>
+                  </Flex>
+                </Collapsible.Trigger>
+                <Collapsible.Content>
+                  <Box padding="2">
+                    <Text fontSize={'xs'}>No options</Text>
+                  </Box>
+                </Collapsible.Content>
+              </Collapsible.Root>
+            ) : (
+              <Text
+                fontSize={'xs'}
+                width={'100%'}
+              >
+                {item.label}
+              </Text>
             )}
-          </Flex>
+          </Box>
         </Flex>
       ))}
 
