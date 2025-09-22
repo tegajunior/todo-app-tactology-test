@@ -1,84 +1,30 @@
 'use client'
-import Image from 'next/image'
-import {
-  Box,
-  Text,
-  Icon,
-  Flex,
-  Switch,
-  Collapsible,
-  Image as ChakraImage,
-} from '@chakra-ui/react'
-import {
-  ArrowLeft,
-  Category,
-  Stickynote,
-  Folder2,
-  People,
-  Note,
-  Task,
-  ArrowDown2,
-  Call,
-  TaskSquare,
-  NotificationBing,
-  MenuBoard,
-  MessageEdit,
-  Edit,
-} from 'iconsax-reactjs'
 
+import Image from 'next/image'
+import { links } from './links'
 import logo from '@/assets/images/logo.png'
 import englandFlag from '@/assets/images/englandFlag.jpg'
-import { LinkItem } from '@/models/types'
+import {
+  Box,
+  Collapsible,
+  Flex,
+  Icon,
+  Text,
+  Image as ChakraImage,
+  Switch,
+} from '@chakra-ui/react'
+import { ArrowDown2, ArrowLeft } from 'iconsax-reactjs'
 
-const links: LinkItem[] = [
-  { label: 'Home', icon: Category, href: '/' },
-  { label: 'MKVanBinnen', icon: Stickynote, href: '/mk-van-binnen' },
-  { label: 'Document Management', icon: Folder2, href: '/document-management' },
-  { label: 'Patient Information', icon: People, href: '/patient-information' },
-  { label: 'Agenda', icon: Note, href: '/agenda' },
-  { label: 'My Department', icon: Task, href: '/department' },
-  { label: 'News', icon: undefined, href: '/department/news' },
-  { label: 'Members', icon: undefined, href: '/department/members' },
-  { label: 'Todo', icon: undefined, href: '/department/todo' },
-  { label: 'Form Task', icon: undefined, href: '/department/form-task' },
-  { label: 'Agenda', icon: undefined, href: '/department/agenda' },
-  {
-    label: 'Follow up system',
-    icon: undefined,
-    href: '/department/follow-up-system',
-  },
-  { label: 'Group Settings', icon: undefined, children: [] },
-  { label: 'Phone numbers', icon: Call },
-  { label: 'My todo Protocols', icon: TaskSquare },
-  { label: 'My Notifications', icon: NotificationBing },
-  { label: 'Knowledge Base', icon: MenuBoard },
-  { label: 'Super Admin', icon: MessageEdit },
-  { label: 'Admin', icon: Edit, children: [] },
-  { label: 'Agenda', icon: undefined },
-  { label: 'News', icon: undefined },
-  { label: 'Poll', icon: undefined },
-  { label: 'Department Rules', icon: undefined },
-  { label: 'Follow up system', icon: undefined },
-]
-
-export default function Sidebar() {
+export default function SidebarContent() {
   return (
     <Box
-      as="aside"
-      w={{ base: 'full', md: 60 }}
-      bg="white"
-      shadow="md"
-      h="100vh"
-      paddingX={4}
-      paddingY={6}
-      position={{ base: 'relative', md: 'fixed' }}
-      overflow={'auto'}
-      borderRight={'none'}
+      p={4}
+      overflow="auto"
+      h="100%"
     >
       <Flex
-        direction="row"
         align="center"
-        mb={2}
+        mb={4}
         justifyContent="space-between"
       >
         <Image
@@ -89,7 +35,6 @@ export default function Sidebar() {
         />
         <ArrowLeft />
       </Flex>
-
       {links.map((item, index) => (
         <Flex
           key={index}
@@ -104,7 +49,7 @@ export default function Sidebar() {
           {item.icon ? (
             <Icon
               as={item.icon}
-              size="sm"
+              boxSize={4}
               width={'20%'}
             />
           ) : (
@@ -155,7 +100,6 @@ export default function Sidebar() {
         height={'90px'}
       >
         <Flex
-          direction="row"
           align="center"
           justify="space-between"
           backgroundColor={'#FFFFFF'}
@@ -166,7 +110,7 @@ export default function Sidebar() {
           <Flex
             direction="row"
             alignItems={'center'}
-            spaceX={2}
+            gap={2}
           >
             <ChakraImage
               src={englandFlag.src}
@@ -190,7 +134,6 @@ export default function Sidebar() {
           />
         </Flex>
         <Flex
-          direction="row"
           align="center"
           justify="space-between"
           backgroundColor={'#FFFFFF'}

@@ -8,12 +8,22 @@ import { SAMPLE } from '@/data/tasks'
 import { colors } from '@/misc/colors'
 import { Task } from '@/models/types'
 import { Box } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<string | null>(null)
-  const [tasks, setTasks] = useState<Task[]>(SAMPLE)
   const [taskView, setTasksView] = useState<'table' | 'card'>('table')
+
+  //Get tasks from localStorage or from constant data
+  const [tasks, setTasks] = useState<Task[]>(() => {
+    const saved = localStorage.getItem('tasks')
+    return saved ? JSON.parse(saved) : SAMPLE
+  })
+
+  //Save tasks to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+  }, [tasks])
 
   const filteredTasks = activeTab
     ? tasks.filter((task) => task.status === activeTab)

@@ -37,7 +37,6 @@ export const SAMPLE: Task[] = [
     priority: 'Urgent',
     status: 'completed',
   },
-  // repeat a few to show pagination
   ...Array.from({ length: 18 }, (_, i) => ({
     id: `${100 + i}`,
     name: ['MKV Intranet V2', 'Design System', 'Medical Appointment'][i % 3],

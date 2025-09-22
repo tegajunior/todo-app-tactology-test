@@ -1,5 +1,4 @@
 'use client'
-import { SAMPLE } from '@/data/tasks'
 import { getPageRange } from '@/misc/helpers'
 import { Task } from '@/models/types'
 import { Table, Box, Spinner, Flex } from '@chakra-ui/react'
@@ -9,15 +8,16 @@ import { colors } from '@/misc/colors'
 import TableHeaderComponent from './TableHeaderComponent'
 import TableBodyComponent from './TableBodyComponent'
 import PaginationComponent from '../PaginationComponent'
+import EmptyStateComponent from '../ui/EmptyState'
 
 export default function TaskTable({
   tasksProp,
   updateTaskStatus,
 }: {
-  tasksProp?: Task[]
+  tasksProp: Task[]
   updateTaskStatus: (id: string) => void
 }) {
-  const tasks = tasksProp ?? SAMPLE
+  const tasks = tasksProp
   const [page, setPage] = useState<number>(1)
   const [perPage, setPerPage] = useState<number>(5)
   const [loading, setLoading] = useState(false)
@@ -41,7 +41,6 @@ export default function TaskTable({
     try {
       await updateTaskStatus(id)
     } finally {
-      // Delay for smooth fade-out
       setTimeout(() => setLoading(false), 600)
     }
   }
@@ -70,28 +69,32 @@ export default function TaskTable({
           />
         </Flex>
       )}
-      <Box
-        border={`2px solid ${colors.greyBg}`}
-        paddingBottom={6}
-        borderRadius={'md'}
-      >
-        <Table.Root>
-          <TableHeaderComponent />
-          <TableBodyComponent
-            tasksProp={paginated}
-            updateTaskStatus={handleUpdateStatus}
+      {tasks.length === 0 ? (
+        <EmptyStateComponent />
+      ) : (
+        <Box
+          border={`2px solid ${colors.greyBg}`}
+          paddingBottom={6}
+          borderRadius={'md'}
+        >
+          <Table.Root>
+            <TableHeaderComponent />
+            <TableBodyComponent
+              tasksProp={paginated}
+              updateTaskStatus={handleUpdateStatus}
+            />
+          </Table.Root>
+          <PaginationComponent
+            page={page}
+            pageNumbers={pageNumbers}
+            perPage={perPage}
+            totalPages={totalPages}
+            total={total}
+            setPage={setPage}
+            setPerPage={setPerPage}
           />
-        </Table.Root>
-        <PaginationComponent
-          page={page}
-          pageNumbers={pageNumbers}
-          perPage={perPage}
-          totalPages={totalPages}
-          total={total}
-          setPage={setPage}
-          setPerPage={setPerPage}
-        />
-      </Box>
+        </Box>
+      )}
     </Box>
   )
 }
