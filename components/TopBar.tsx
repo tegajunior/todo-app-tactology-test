@@ -5,8 +5,6 @@ import {
   Flex,
   Text,
   Avatar,
-  InputGroup,
-  Input,
   Icon,
   Image,
   Collapsible,
@@ -24,6 +22,7 @@ import yellowImg from '@/assets/images/yellowimg.png'
 import coloredSetting from '@/assets/images/coloredSettings.png'
 import threeCX from '@/assets/images/3CX.png'
 import redE from '@/assets/images/redE.png'
+import SearchInput from '@/components/ui/SearchInput'
 
 const images2nd = [
   { source: yellowImg, width: '30px', height: '26px' },
@@ -39,7 +38,7 @@ export default function TopBar() {
   const startElement = (
     <Icon
       as={SearchNormal1}
-      size="sm"
+      size="md"
       ml={1.5}
     />
   )
@@ -71,25 +70,16 @@ export default function TopBar() {
         gap={4}
         wrap="wrap"
       >
-        <InputGroup
+        <SearchInput
           startElement={startElement}
           endElement={endElement}
-          width={'180px'}
-          height={'46px'}
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.currentTarget.value)}
           bg={colors.greyBg}
-          border={'1px solid #CDD6E9'}
-          borderRadius={'8px'}
-        >
-          <Input
-            ref={inputRef}
-            value={searchValue}
-            border={'none'}
-            padding={1}
-            onChange={(e) => {
-              setSearchValue(e.currentTarget.value)
-            }}
-          />
-        </InputGroup>
+          width="180px"
+          height="46px"
+        />
+
         <Box
           width={'180px'}
           height={'46px'}

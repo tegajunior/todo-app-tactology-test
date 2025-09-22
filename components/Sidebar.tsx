@@ -89,9 +89,9 @@ export default function Sidebar() {
         />
         <ArrowLeft />
       </Flex>
-      {links.map((item) => (
+      {links.map((item, index) => (
         <Flex
-          key={item.label}
+          key={index}
           marginBottom={1}
           p={1}
           width={'100%'}
